@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Idiom Unicorn | Reading Comprehension Game</title>
+<style type="text/css">
+		html,body {
+			background-color: #000;
+			color: #fff;
+			font-family: helvetica, arial, sans-serif;
+			margin: 0;
+			padding: 0;
+			font-size: 12pt;
+		}
+		#canvas {
+			position: absolute;
+			left: 0;
+			top: 0;
+			margin: auto;
+		}
+		/* Extra Wide Screen - Display Left Ad Unit at Largest Size */
+		@media only screen 
+		  and (min-width: 1800px) {
+			#canvas {
+				left: 0px;
+				top: 0px;
+			}
+		}
+		/* Very Wide Screen - Display Left Ad Unit at Regular Size */
+		@media only screen 
+		  and (min-width: 1700px) and (max-width: 1799px) {
+			#canvas {
+				left: 0px;
+				top: 0px;
+			}
+		}
+		/* Wide Screen - Display Right Ad Unit at Largest Size */
+		@media only screen 
+		  and (min-width: 1400px) and (max-width: 1699px)  {
+			#canvas {
+				left: 0px;
+				top: 0px;
+			}
+		}
+		/* Regular Screen - Display Right Ad Unit at Regular Size*/
+		@media only screen 
+		  and (min-width: 900px) and (max-width: 1399px){
+			#canvas {
+				left: 0px;
+				top: 0px;
+			}
+		}
+		/* Skinny Screen */
+		@media only screen 
+		  and (max-width: 899px) {
+			#canvas {
+				left: 0px;
+				top: 100px;
+			}
+		}
+		/* Short Screen */
+		@media only screen 
+		  and (max-height: 399px) { 
+			#canvas {
+				left: 0px;
+				top: 0px;
+		}
+		/* Tall Screen */
+		@media only screen 
+		  and (min-height: 1200px) { 
+			#canvas{
+				top:0px;
+			}
+		}
+		
+	</style>
+<link href="https://fonts.googleapis.com/css?family=Mali:500,500i,700,700i&display=swap" rel="stylesheet">
+
+<script type="text/javascript">
+		/*Preload Title Screen Images*/
+		var tsImage = new Image();
+		tsImage.src = 'media/buttons-and-logos/title-screen-main.png';
+		
+		var conbut = new Image();
+		conbut.src = 'media/buttons-and-logos/continue-button.png';
+		
+		var ngbut = new Image();
+		ngbut.src = 'media/buttons-and-logos/new-game-button.png';
+	</script>
+<script type="text/javascript" src="idiom-unicorn-min.js"></script>
+
+<script type="text/javascript">
+		    function killBackSpace(e) {
+			   e = e ? e : window.event;
+			   var t = e.target ? e.target : e.srcElement ? e.srcElement : null;
+			   if (t && t.tagName && (t.type && /(password)|(text)|(file)/.test(t.type.toLowerCase())) || t.tagName.toLowerCase() == 'textarea')
+				  return true;
+			   var k = e.keyCode ? e.keyCode : e.which ? e.which : null;
+			   if (k == 8) {
+				  if (e.preventDefault)
+					 e.preventDefault();
+				  return false;
+			   };
+			   return true;
+		    };
+		 
+		    if (typeof document.addEventListener != 'undefined')
+			   document.addEventListener('keydown', killBackSpace, false);
+		    else if (typeof document.attachEvent != 'undefined')
+			   document.attachEvent('onkeydown', killBackSpace);
+		    else {
+			   if (document.onkeydown != null) {
+				  var oldOnkeydown = document.onkeydown;
+				  document.onkeydown = function(e) {
+				  oldOnkeydown(e);
+				  killBackSpace(e);
+				  };
+			   }
+		 
+			   else
+				  document.onkeydown = killBackSpace;
+		    }
+	</script>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="description" content="Idiom Unicorn is a fun, FREE reading comprehension game. Students play as a unicorn, smash bad guys, and learn 500 common idioms! Click to play it in any browser now.">
+<meta property="og:url" content="https://ereadinggames.com/idiom-unicorn/" />
+<meta property="og:title" content="Idiom Unicorn | Reading Comprehension Game" />
+<meta property="og:description" content="Idiom Unicorn is a fun, FREE reading comprehension game. Students play as a unicorn, smash bad guys, and learn 500 common idioms! Click to play it now!" />
+<meta property="og:image" content="https://ereadinggames.com/images/idiom-unicorn-fb.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:image" content="https://ereadinggames.com/images/idiom-unicorn-tw.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:creator" content="@donzomortini">
+<meta name="twitter:title" content="Idiom Unicorn | Reading Comprehension Game">
+<meta name="twitter:description" content="Idiom Unicorn is a fun, FREE reading comprehension game. Students play as a unicorn, smash bad guys, and learn 500 common idioms! Click to play it now!">
+<script>
+		var adBreak = adConfig = function(o) {}
+		adConfig({preloadAdBreaks: 'on'});
+	</script>
+<script>
+		var HTML5Ads = true;
+		var adSaveReady = true;
+		//var adSaveINT = 600000;
+		var adSaveINT = 120000;
+		
+		//Called from in-game loop when player is facing death...
+		function watchAdForSave(){
+           	rewardedAd();
+        }
+		//Allows Rewarded Ad to Be Called Once Again...
+		function restoreAdSave(){
+			if (!adSaveReady){
+				adSaveReady = true;
+			}
+		}
+		
+		//Rewarded Ad Break
+		function rewardedAd(){
+			this.showAdFn = undefined;
+			
+			adBreak({
+				type: 'reward',
+				name: 'new_life_reward_1',
+				//beforeAd: pauseGame,
+				//afterAd: restartGame,
+
+				beforeReward: (showAdFn) => {
+					this.showAdFn = showAdFn;
+					showRewardPrompt();
+				},
+				adDismissed: adDismissed,
+				adViewed: adViewed,
+				adBreakDone: rewardedBreakDone,
+			});
+		}
+		//Rewarded Ad Callbacks
+		function showRewardPrompt(){
+			if(confirm('Oh no!\nYou got that one wrong.\n\nBut would you like to WATCH AN AD to STAY ALIVE AND RESTORE YOUR ATTACK?')){
+				if (this.showAdFn) {
+					this.showAdFn();
+				}
+			}
+		}
+		function adDismissed(){
+			alert("You have to watch the ad to get the reward!");
+		}
+		function adViewed(){
+			ig.game.restorePlayer = true;
+			ig.game.savedOnce = true;
+		}
+		function rewardedBreakDone(){
+			adSaveReady = false;
+			window.setTimeout(restoreAdSave, adSaveINT);
+		}
+		
+		//Interstital Ad Break 
+		//(Not currently used)
+		
+		function interstitalAd(){
+			adBreak({
+				type: 'start',           // The type of this placement
+				name: 'game_started',    // A descriptive name for this placement
+				beforeAd: beforeAd,      // Prepare for the ad. Mute and pause the game flow
+				afterAd: afterAd,        // Resume the game and un-mute the sound
+				adBreakDone: breakDone,  // Always called (if provided) even if an ad didn't show
+			});
+		}
+		//Interstital Callbacks
+		function beforeAd(){
+			console.log('called before interstitalAd appears...');
+		}
+		function afterAd(){
+			console.log('called after interstitalAd is closed...');
+		}
+		function breakDone(){
+			console.log('Always called at the end of the interstitalAd call...');
+		}
+
+	</script>
+</head>
+<body>
+<canvas id="canvas"><font color="#FEFF04"><center>You are using an outdated browser. Why don't you download <a href="https://www.google.com/chrome">Chrome</a>?</center></font></canvas>
+</body>
+</html>
